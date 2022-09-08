@@ -1,16 +1,30 @@
-# smart_store
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٢٤٩](https://user-images.githubusercontent.com/47037203/189190257-114d9e53-cb40-4f8a-8aa5-06aef1ee22b3.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٢٥٦](https://user-images.githubusercontent.com/47037203/189190259-9a38ba0b-c7c4-4241-9a51-82d7af4b9133.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٠٠](https://user-images.githubusercontent.com/47037203/189190261-d3baaaba-8649-465d-9b5f-b1d8e98b3d60.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٠٥](https://user-images.githubusercontent.com/47037203/189190270-5481a27e-a64d-4881-9f59-fd5d0f3b7189.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣١٦](https://user-images.githubusercontent.com/47037203/189190279-9d6d417e-90dc-4798-8300-964a1e86bd5d.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٢٢](https://user-images.githubusercontent.com/47037203/189190282-72c7749d-f551-4c7b-a711-3438d6df9e6f.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٢٩](https://user-images.githubusercontent.com/47037203/189190284-8c72647d-6845-4f63-adfa-ccb1129f157e.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٣٧](https://user-images.githubusercontent.com/47037203/189190289-6a32d572-cc63-45a5-92f6-c4d07de39a9e.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٤٤](https://user-images.githubusercontent.com/47037203/189190292-22fee0f3-99ed-40b7-9f47-a151ab734719.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٥١](https://user-images.githubusercontent.com/47037203/189190294-cf9af7bd-b842-4965-8fc2-53cf95d37d75.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٣٥٨](https://user-images.githubusercontent.com/47037203/189190299-3fe9c8fa-a52d-4f0f-8880-6aa26cbddc96.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٤١٠](https://user-images.githubusercontent.com/47037203/189190303-f523d0f2-4692-4830-b8eb-6215c68fc927.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٤١٦](https://user-images.githubusercontent.com/47037203/189190305-6475691c-56eb-41e1-b7ab-6b5e3278bcfa.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٤٣٢](https://user-images.githubusercontent.com/47037203/189190312-1d7e4e5a-8e12-4b1c-b6d2-a6c636cce906.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٤٣٩](https://user-images.githubusercontent.com/47037203/189190318-10de46f8-a875-4f65-b322-066834b5ac4d.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٤٤٨](https://user-images.githubusercontent.com/47037203/189190322-29b8e15e-7d78-4e58-bb3b-fbfe20b99e95.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٠٠](https://user-images.githubusercontent.com/47037203/189190326-68bc19cd-7f2e-4956-98d0-2838b3ad04af.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥١٠](https://user-images.githubusercontent.com/47037203/189190330-16d27a35-e98b-4167-a8d8-192ed32c1fd1.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥١٥](https://user-images.githubusercontent.com/47037203/189190334-10bce62b-585b-4b7e-818a-ae7b1119b737.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٢٦](https://user-images.githubusercontent.com/47037203/189190338-df995ac4-ae85-4cfc-8bf8-4c79fd099640.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٣٣](https://user-images.githubusercontent.com/47037203/189190340-1b2a39bf-1080-46ff-991c-496ea75f637d.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٣٩](https://user-images.githubusercontent.com/47037203/189190342-7b822363-d01e-44c4-8e2e-e1e48aff7108.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٤٦](https://user-images.githubusercontent.com/47037203/189190344-92a1b33f-459c-455a-a2cc-d8d90c0d1e4b.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٥٢](https://user-images.githubusercontent.com/47037203/189190345-03c05cca-9a62-4a60-8202-401e138d7ffd.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٥٥٨](https://user-images.githubusercontent.com/47037203/189190354-e476518f-f17f-4388-a26b-ba5ba818a9ec.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٦٠٥](https://user-images.githubusercontent.com/47037203/189190359-a9608d77-5beb-48b2-9ab6-17a0939bd367.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٦٢٠](https://user-images.githubusercontent.com/47037203/189190360-836844dd-816b-4b13-aab0-dbe420b83da6.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٢٦٣٤](https://user-images.githubusercontent.com/47037203/189190366-f66a6f0b-1a21-4cb0-8826-67d1f751b671.jpg)
+![Screenshot_٢٠٢٢٠٨٣١-٠٥٣٨٢٣](https://user-images.githubusercontent.com/47037203/189190369-60fc0295-7fff-42f2-b8f3-95928e00800c.jpg)
