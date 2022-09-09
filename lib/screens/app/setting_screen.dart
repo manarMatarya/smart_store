@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_store/api/auth/auth_api_controller.dart';
 import 'package:smart_store/main.dart';
+import 'package:smart_store/models/api_response.dart';
 import 'package:smart_store/utils/colors.dart';
+import 'package:smart_store/utils/context_extenssion.dart';
 import 'package:smart_store/widgets/app/setting_card.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -223,13 +226,26 @@ class _SettingScreenState extends State<SettingScreen> {
                   icon: Icons.logout,
                   title: 'Logout',
                   subTitle: 'sign out from account',
-                  onPressed: () {},
+                  onPressed: () => _logout(),
                 ),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  void _logout() async {
+    ApiResponse processResponse = await AuthApiController().logout();
+    if (processResponse.success) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/login_screen');
+    }
+    // ignore: use_build_context_synchronously
+    context.showSnackBar(
+      message: processResponse.message,
+      error: !processResponse.success,
     );
   }
 

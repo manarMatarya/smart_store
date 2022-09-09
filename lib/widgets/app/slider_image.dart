@@ -11,18 +11,17 @@ class SliderImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.r),
-          bottomLeft: Radius.circular(30.r),
-          bottomRight: Radius.circular(30.r),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30.r),
+            bottomLeft: Radius.circular(30.r),
+            bottomRight: Radius.circular(30.r),
+          ),
         ),
-      ),
-      child: Image.asset(
-        image,
-        width: double.infinity,
-      ),
-    );
+        child: Image.asset(
+          image,
+          width: double.infinity,
+        ));
   }
 }

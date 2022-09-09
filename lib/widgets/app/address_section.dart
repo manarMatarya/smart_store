@@ -10,19 +10,13 @@ class AddressSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      style: GoogleFonts.montserrat(color: const Color(0xFF75759E), fontSize: 11.sp),
+      style: GoogleFonts.montserrat(
+          color: const Color(0xFF75759E), fontSize: 11.sp),
       controller: controller,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 20.w),
         filled: true,
         fillColor: greyColor,
-        suffixIcon: IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.edit,
-            color: Color(0xFF75759E),
-          ),
-        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(16.r),

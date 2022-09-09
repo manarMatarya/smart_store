@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_store/get/cart_getx_controller.dart';
+import 'package:smart_store/get/orders_getx_controller.dart';
+import 'package:smart_store/models/process_response.dart';
+import 'package:smart_store/models/product.dart';
 import 'package:smart_store/utils/colors.dart';
+import 'package:smart_store/utils/context_extenssion.dart';
 import 'package:smart_store/widgets/app/main_button.dart';
 
 class PaymentMethods extends StatefulWidget {
@@ -12,6 +17,9 @@ class PaymentMethods extends StatefulWidget {
 }
 
 class _PaymentMethodsState extends State<PaymentMethods> {
+  OrdersGetxController orderController = OrdersGetxController.to;
+  CartGetxController cartGetxController = CartGetxController.to;
+
   String? _method;
   @override
   Widget build(BuildContext context) {
@@ -81,7 +89,7 @@ class _PaymentMethodsState extends State<PaymentMethods> {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  value: 'cash',
+                  value: 'Cash',
                   groupValue: _method,
                   onChanged: (String? value) {
                     setState(() => _method = value);
@@ -190,7 +198,39 @@ class _PaymentMethodsState extends State<PaymentMethods> {
       ),
       bottomNavigationBar: Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 20.h),
-          child: MainButton(text: 'Continue', onPressed: () {})),
+          child: MainButton(
+              text: 'Continue',
+              onPressed: () {
+                if (_method != null) {
+                  orderController.paymentType.value = _method!;
+                  _save();
+                } else {
+                  context.showSnackBar(
+                      message: 'Choose payment method', error: false);
+                }
+              })),
     );
+  }
+
+  Future<void> _save() async {
+    List tempCart = [];
+    cartGetxController.cartItems.forEach((element) {
+      Map tempMap = {};
+      tempMap['"product_id"'] = element.productId.toString();
+      tempMap['"quantity"'] = element.count.toString();
+
+      tempCart.add(tempMap);
+    });
+    print(tempCart.toString().replaceAll(' ', ''));
+    ProcessResponse processResponse = await orderController.addOrder(
+        carts: tempCart);
+
+    context.showSnackBar(
+        message: processResponse.message, error: !processResponse.success);
+
+    if (processResponse.success) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushNamed(context, '/order_screen');
+    }
   }
 }

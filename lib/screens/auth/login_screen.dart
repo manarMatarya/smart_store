@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_store/api/auth/auth_api_controller.dart';
+import 'package:smart_store/models/api_response.dart';
+import 'package:smart_store/models/process_response.dart';
 import 'package:smart_store/utils/colors.dart';
+import 'package:smart_store/utils/context_extenssion.dart';
 import 'package:smart_store/widgets/app/main_button.dart';
 import 'package:smart_store/widgets/auth/text_field.dart';
 
@@ -103,8 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           MainButton(
             text: 'Login',
-            onPressed: () =>
-                Navigator.pushNamed(context, '/home_screen'),
+            onPressed: () => _performLogin(),
           ),
           SizedBox(
             height: 25.h,
@@ -139,47 +142,35 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  void _performLogin() {
+    if (_checkData()) {
+      _login();
+    }
+  }
+
+  bool _checkData() {
+    if (_phoneController.text.isNotEmpty &&
+        _passwordController.text.isNotEmpty) {
+      return true;
+    }
+    context.showSnackBar(message: 'Enter required data', error: true);
+    return false;
+  }
+
+  void _login() async {
+   ApiResponse processResponse = await AuthApiController().login(
+      mobile: _phoneController.text,
+      password: _passwordController.text,
+    );
+    if (processResponse.success) {
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/home_screen');
+    }
+    // ignore: use_build_context_synchronously
+    context.showSnackBar(
+      message: processResponse.message,
+      error: !processResponse.success,
+    );
+  }
 }
-
-
-  // Container(
-  //           height: 200.h,
-  //           decoration: BoxDecoration(
-  //             color: mainColor,
-  //             borderRadius: BorderRadius.only(
-  //               bottomLeft: Radius.circular(30.r),
-  //               bottomRight: Radius.circular(30.r),
-  //             ),
-  //           ),
-  //           child: Padding(
-  //             padding: EdgeInsets.only(left: 20.w),
-  //             child: Column(
-  //               crossAxisAlignment: CrossAxisAlignment.start,
-  //               mainAxisAlignment: MainAxisAlignment.end,
-  //               children: [
-  //                 Text(
-  //                   'Sign In',
-  //                   style: GoogleFonts.montserrat(
-  //                     color: Colors.white,
-  //                     fontWeight: FontWeight.w600,
-  //                     fontSize: 20.sp,
-  //                   ),
-  //                 ),
-  //                 SizedBox(
-  //                   height: 15.h,
-  //                 ),
-  //                 Text(
-  //                   'Welcome back..! please enter your phone number and password to continue login to your account.',
-  //                   style: GoogleFonts.montserrat(
-  //                     color: Colors.white,
-  //                     fontWeight: FontWeight.w400,
-  //                     fontSize: 16.sp,
-  //                   ),
-  //                 ),
-  //                 SizedBox(
-  //                   height: 20.h,
-  //                 ),
-  //               ],
-  //             ),
-  //           ),
-  //         ),

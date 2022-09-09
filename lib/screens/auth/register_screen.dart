@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smart_store/api/auth/auth_api_controller.dart';
+import 'package:smart_store/get/auth_controller.dart';
+import 'package:smart_store/models/api_response.dart';
+import 'package:smart_store/models/city.dart';
+import 'package:smart_store/models/user.dart';
+import 'package:smart_store/screens/auth/otp_screen.dart';
 import 'package:smart_store/utils/colors.dart';
+import 'package:smart_store/utils/context_extenssion.dart';
 import 'package:smart_store/widgets/app/main_button.dart';
 import 'package:smart_store/widgets/auth/text_field.dart';
 
@@ -19,10 +27,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   late TextEditingController _emailController;
   late TextEditingController _cityController;
   bool _obsecure = true;
-  String? _gender = 'M';
-  String? currentCity = '';
-
-  final List<String> _cities = ['Gaza', 'Rafah', 'Khanyounis'];
+  String? _gender;
+  City? _currentCity;
 
   @override
   void initState() {
@@ -46,6 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -103,39 +110,47 @@ class _RegisterScreenState extends State<RegisterScreen> {
           SizedBox(
             height: 20.h,
           ),
-          DropdownButtonFormField<String>(
-              decoration: InputDecoration(
-                constraints: BoxConstraints(minHeight: 60.h, maxHeight: 60.h),
-                hintMaxLines: 1,
-                hintText: 'City',
-                hintStyle: GoogleFonts.montserrat(
-                  color: const Color(0xFF8992A3),
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w500,
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xFFF6F6F7)),
-                  borderRadius: BorderRadius.circular(30.r),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: const BorderSide(color: Color(0xFFF6F6F7)),
-                  borderRadius: BorderRadius.circular(30.r),
-                ),
-              ),
-              items: _cities.map((city) {
-                return DropdownMenuItem<String>(
-                  value: city,
-                  child: Text(
-                    city,
-                    style: const TextStyle(color: Colors.black),
+          GetX<AuthGetxController>(
+            init: AuthGetxController(),
+            builder: ((controller) {
+              return DropdownButtonFormField<City>(
+                  decoration: InputDecoration(
+                    constraints:
+                        BoxConstraints(minHeight: 60.h, maxHeight: 60.h),
+                    hintMaxLines: 1,
+                    hintText: 'City',
+                    hintStyle: GoogleFonts.montserrat(
+                      color: const Color(0xFF8992A3),
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Color(0xFFF6F6F7)),
+                      borderRadius: BorderRadius.circular(30.r),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(color: Color(0xFFF6F6F7)),
+                      borderRadius: BorderRadius.circular(30.r),
+                    ),
                   ),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  currentCity = value;
-                });
-              }),
+                  items: controller.isLoading.value
+                      ? []
+                      : controller.cities.map((City city) {
+                          return DropdownMenuItem<City>(
+                            value: city,
+                            child: Text(
+                              city.nameEn,
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                          );
+                        }).toList(),
+                  onChanged: (City? value) {
+                    setState(() {
+                      _currentCity = value;
+                    });
+                  });
+            }),
+          ),
           SizedBox(
             height: 20.h,
           ),
@@ -184,10 +199,60 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           MainButton(
             text: 'Sign Up',
-            onPressed: () => Navigator.pushNamed(context, '/home_screen'),
+            onPressed: () {
+              _performRegister();
+            },
           ),
         ],
       ),
     );
+  }
+
+  void _performRegister() async {
+    if (_checkData()) {
+      await _register();
+    }
+  }
+
+  bool _checkData() {
+    if (_nameController.text.isNotEmpty &&
+        _emailController.text.isNotEmpty &&
+        _phoneController.text.isNotEmpty &&
+        _currentCity != null &&
+        _gender != null &&
+        _passwordController.text.isNotEmpty) {
+      return true;
+    }
+    context.showSnackBar(message: 'Enter required data', error: true);
+    return false;
+  }
+
+  _register() async {
+    ApiResponse apiResponse = await AuthApiController().register(user: user);
+
+    if (apiResponse.success) {
+      // ignore: use_build_context_synchronously
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((context) => OtpScreen(mobile: user.mobile))));
+    }
+    // ignore: use_build_context_synchronously
+    return context.showSnackBar(
+      message: apiResponse.message,
+      error: !apiResponse.success,
+    );
+  }
+
+  User get user {
+    User user = User();
+    user.name = _nameController.text;
+    user.email = _emailController.text;
+    user.mobile = _phoneController.text;
+    user.gender = _gender!;
+    user.city = _currentCity!;
+    user.cityId = _currentCity!.id.toString();
+    user.password = _passwordController.text;
+    return user;
   }
 }

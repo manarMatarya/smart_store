@@ -16,8 +16,10 @@ class OtpTextField extends StatelessWidget {
     return TextField(
       keyboardType: TextInputType.number,
       style: GoogleFonts.montserrat(),
+      maxLength: 1,
       controller: _firstNumberController,
       decoration: InputDecoration(
+        counterText: '',
         constraints: BoxConstraints(
             minHeight: 50.h, maxHeight: 50.h, minWidth: 50.w, maxWidth: 50.w),
         hintMaxLines: 1,

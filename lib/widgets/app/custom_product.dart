@@ -49,7 +49,7 @@ class CustomProduct extends StatelessWidget {
               ),
             ),
           ),
-          Image.asset(image, height: 100.h,),
+          Image.network(image, height: 100.h,),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
